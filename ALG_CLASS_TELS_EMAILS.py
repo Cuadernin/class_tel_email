@@ -122,7 +122,7 @@ def clas_emails(FINAL,columnas):
 
         #PARTE 4: specific cases using keywords like 'NOEMAIL' /'SINCORREO' / 'EXAMPLE' 
         CLAVES = ["NOEMAIL","SINCORREO","NO"]
-        palabras_clave = [FINAL[col].loc[FINAL[col].astype(str).str.contains(ele)].value_counts().index.to_list() for ele in CLAVES]
+        palabras_clave = [FINAL[col].loc[FINAL[col].astype(str).str.contains(ele)].value_counts().index.to_list() for ele in CLAVES] # You can use "|".join(CLAVES) for not use list comprehension
         palabras_clave = [r for listas in  palabras_clave for r in listas]
         FINAL.loc[(FINAL[col].isin(palabras_clave)) & (FINAL[nueva].isna()),nueva]=0 
         #PARTE 5: specific cases where there is no "@"
